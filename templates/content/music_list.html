@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Music - MediaHub{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Our Music Collection</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover amazing music tracks from various artists and genres.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for track in music_list %}
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <img src="{{ track.cover_image.url }}" alt="{{ track.title }}" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h3 class="font-semibold text-lg mb-1 text-gray-800">{{ track.title }}</h3>
+                <p class="text-gray-600 mb-3">by {{ track.artist }}</p>
+                {% if track.description %}
+                <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ track.description }}</p>
+                {% endif %}
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded">{{ track.category.name }}</span>
+                    <span>{{ track.created_at|date:"M d, Y" }}</span>
+                </div>
+                <audio controls class="w-full mt-3">
+                    <source src="{{ track.audio_file.url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-music text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-2xl font-semibold text-gray-600">No music available yet</h3>
+            <p class="text-gray-500 mt-2">Check back later for new tracks!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

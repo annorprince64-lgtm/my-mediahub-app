@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - MediaHub | Premium Content Destination{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Glass Morphism -->
+<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-10 animate-bounce"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+        <!-- Animated Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-8 animate-fade-in">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span class="text-sm font-semibold">🎉 New Content Added Daily</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+            <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent">
+                CREATE.
+            </span>
+            <br>
+            <span class="bg-gradient-to-r from-pink-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
+                DISCOVER.
+            </span>
+            <br>
+            <span class="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 bg-clip-text text-transparent">
+                INSPIRE.
+            </span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Your ultimate destination for <span class="text-yellow-300 font-semibold">premium content</span>. 
+            Experience videos, music, articles, and visuals like never before.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <a href="#content" class="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg flex items-center gap-3">
+                <i class="fas fa-play-circle text-xl"></i>
+                Explore Content
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="#videos" class="group bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:bg-white/20 flex items-center gap-3">
+                <i class="fas fa-video text-xl"></i>
+                Watch Now
+            </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-yellow-300 mb-2">{{ recent_videos.count }}+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Videos</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-green-300 mb-2">{{ recent_music.count }}+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Tracks</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-blue-300 mb-2">{{ recent_articles.count }}+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Articles</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-bold text-pink-300 mb-2">{{ featured_pictures.count }}+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Photos</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#content" class="text-white/60 hover:text-white transition-colors">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Content Showcase -->
+<section id="content" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4">
+        <!-- Videos Section -->
+        <div id="videos" class="mb-20">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-red-500 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-video text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-800">Featured Videos</h2>
+                </div>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Watch our most engaging and trending video content
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {% for video in recent_videos %}
+                <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" 
+                             class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                                <i class="fas fa-play mr-1"></i>Video
+                            </span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2">{{ video.title }}</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="bg-purple-500/80 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                                    {{ video.category.name }}
+                                </span>
+                                <span class="text-white/80 text-sm">{{ video.created_at|date:"M d" }}</span>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center">
+                            <button class="transform scale-0 group-hover:scale-100 transition duration-300 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center shadow-2xl">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-2">{{ video.description|truncatewords:15 }}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">🎬 {{ video.category.name }}</span>
+                            <span class="text-slate-400 text-sm">📅 {{ video.created_at|date:"M d" }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full text-center py-16">
+                    <div class="w-32 h-32 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-video text-slate-400 text-5xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-600 mb-4">Coming Soon!</h3>
+                    <p class="text-slate-500 text-lg">Amazing video content is on its way</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if recent_videos %}
+            <div class="text-center mt-12">
+                <a href="{% url 'video_list' %}" class="inline-flex items-center gap-3 bg-gradient-to-r from-red-500 to-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-red-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <span>View All Videos</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Music Section -->
+        <div id="music" class="mb-20">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-music text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-800">Latest Music</h2>
+                </div>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Listen to our newest and most popular audio tracks
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {% for track in recent_music %}
+                <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="{{ track.cover_image.url }}" alt="{{ track.title }}" 
+                             class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                                <i class="fas fa-music mr-1"></i>Audio
+                            </span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white font-bold text-lg mb-1">{{ track.title }}</h3>
+                            <p class="text-green-300 text-sm font-semibold">by {{ track.artist }}</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        {% if track.description %}
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-2">{{ track.description }}</p>
+                        {% endif %}
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-semibold">
+                                {{ track.category.name }}
+                            </span>
+                            <span class="text-slate-400 text-sm">{{ track.created_at|date:"M d" }}</span>
+                        </div>
+                        <audio controls class="w-full rounded-xl">
+                            <source src="{{ track.audio_file.url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full text-center py-16">
+                    <div class="w-32 h-32 bg-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-music text-slate-400 text-5xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-600 mb-4">Coming Soon!</h3>
+                    <p class="text-slate-500 text-lg">Awesome tracks are being prepared</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if recent_music %}
+            <div class="text-center mt-12">
+                <a href="{% url 'music_list' %}" class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <span>Explore Music</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Articles & Gallery Side by Side -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Articles -->
+            <div>
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-newspaper text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-black text-slate-800">Latest Articles</h2>
+                            <p class="text-slate-600 mt-1">Read our newest stories and insights</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'article_list' %}" class="text-blue-500 hover:text-blue-600 font-bold text-sm flex items-center gap-1 group">
+                        View All
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="space-y-6">
+                    {% for article in recent_articles %}
+                    <article class="group bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                        <div class="flex flex-col sm:flex-row h-48">
+                            <div class="sm:w-2/5 relative overflow-hidden">
+                                <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                                        Article
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="sm:w-3/5 p-6 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">{{ article.title }}</h3>
+                                    <p class="text-slate-600 text-sm mb-3 line-clamp-2">{{ article.excerpt }}</p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs font-semibold">
+                                        {{ article.category.name }}
+                                    </span>
+                                    <span class="text-slate-400 text-sm">{{ article.created_at|date:"M d, Y" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <div class="text-center py-12 bg-white rounded-3xl shadow-lg">
+                        <div class="w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-newspaper text-slate-400 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-600 mb-2">Coming Soon!</h3>
+                        <p class="text-slate-500">Interesting stories on the way</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <div>
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-pink-500 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-images text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-black text-slate-800">Photo Gallery</h2>
+                            <p class="text-slate-600 mt-1">Explore stunning visual content</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'gallery' %}" class="text-pink-500 hover:text-pink-600 font-bold text-sm flex items-center gap-1 group">
+                        View All
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    {% for picture in featured_pictures %}
+                    <div class="group aspect-square bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                        <div class="relative w-full h-full">
+                            <img src="{{ picture.image.url }}" alt="{{ picture.title }}" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition duration-300">
+                                <h4 class="text-white font-bold text-sm mb-1">{{ picture.title }}</h4>
+                                {% if picture.description %}
+                                <p class="text-white/80 text-xs line-clamp-2">{{ picture.description }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-2 text-center py-12 bg-white rounded-3xl shadow-lg">
+                        <div class="w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-images text-slate-400 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-600 mb-2">Coming Soon!</h3>
+                        <p class="text-slate-500">Beautiful visuals being curated</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-20 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-700 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-black mb-6">
+                Ready to <span class="bg-gradient-to-r from-yellow-300 to-pink-400 bg-clip-text text-transparent">Explore</span>?
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
+                Join our community of content lovers and discover something amazing every day.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="{% url 'video_list' %}" class="bg-white text-purple-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center gap-3">
+                    <i class="fas fa-rocket text-xl"></i>
+                    Start Your Journey
+                </a>
+                <a href="#videos" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+                    <i class="fas fa-eye text-xl"></i>
+                    Browse Content
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fade-in 1s ease-out;
+}
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+</style>
+{% endblock %}

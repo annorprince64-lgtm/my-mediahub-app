@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MediaHub - Your Content Destination{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-border {
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #667eea, #764ba2) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="{% url 'home' %}" class="text-2xl font-bold flex items-center text-shadow">
+                    <i class="fas fa-play-circle mr-3 text-yellow-300"></i>
+                    <span class="bg-gradient-to-r from-yellow-300 to-pink-400 bg-clip-text text-transparent">MediaHub</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="{% url 'home' %}" class="hover:text-yellow-300 transition duration-300 font-medium flex items-center text-shadow">
+                        <i class="fas fa-home mr-2"></i> Home
+                    </a>
+                    <a href="{% url 'video_list' %}" class="hover:text-yellow-300 transition duration-300 font-medium flex items-center text-shadow">
+                        <i class="fas fa-video mr-2"></i> Videos
+                    </a>
+                    <a href="{% url 'music_list' %}" class="hover:text-yellow-300 transition duration-300 font-medium flex items-center text-shadow">
+                        <i class="fas fa-music mr-2"></i> Music
+                    </a>
+                    <a href="{% url 'article_list' %}" class="hover:text-yellow-300 transition duration-300 font-medium flex items-center text-shadow">
+                        <i class="fas fa-newspaper mr-2"></i> Articles
+                    </a>
+                    <a href="{% url 'gallery' %}" class="hover:text-yellow-300 transition duration-300 font-medium flex items-center text-shadow">
+                        <i class="fas fa-images mr-2"></i> Gallery
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white text-xl hover:text-yellow-300 transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-white border-opacity-20">
+                <div class="flex flex-col space-y-3 mt-4">
+                    <a href="{% url 'home' %}" class="flex items-center py-2 px-4 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-home mr-3"></i> Home
+                    </a>
+                    <a href="{% url 'video_list' %}" class="flex items-center py-2 px-4 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-video mr-3"></i> Videos
+                    </a>
+                    <a href="{% url 'music_list' %}" class="flex items-center py-2 px-4 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-music mr-3"></i> Music
+                    </a>
+                    <a href="{% url 'article_list' %}" class="flex items-center py-2 px-4 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-newspaper mr-3"></i> Articles
+                    </a>
+                    <a href="{% url 'gallery' %}" class="flex items-center py-2 px-4 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-images mr-3"></i> Gallery
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 to-black text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Section -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-play-circle text-4xl text-yellow-300 mr-3"></i>
+                        <span class="text-3xl font-bold bg-gradient-to-r from-yellow-300 to-pink-400 bg-clip-text text-transparent">MediaHub</span>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-6 max-w-md">
+                        Your ultimate destination for premium content. Discover amazing videos, music, articles, and stunning visuals all in one place.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-500 hover:text-gray-900 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-yellow-300">Explore</h4>
+                    <div class="space-y-3">
+                        <a href="{% url 'home' %}" class="block text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i> Home
+                        </a>
+                        <a href="{% url 'video_list' %}" class="block text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i> Videos
+                        </a>
+                        <a href="{% url 'music_list' %}" class="block text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i> Music
+                        </a>
+                        <a href="{% url 'article_list' %}" class="block text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i> Articles
+                        </a>
+                        <a href="{% url 'gallery' %}" class="block text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center">
+                            <i class="fas fa-chevron-right text-xs mr-2"></i> Gallery
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-yellow-300">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get the latest content delivered to your inbox</p>
+
+                    <!-- Messages Display -->
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                        <div class="p-3 rounded-lg text-sm {% if message.tags == 'success' %}bg-green-900 text-green-200{% elif message.tags == 'error' %}bg-red-900 text-red-200{% else %}bg-blue-900 text-blue-200{% endif %}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'newsletter_subscribe' %}" id="newsletter-form" class="space-y-3">
+                        {% csrf_token %}
+                        <div class="relative">
+                            <input type="email" name="email" placeholder="Enter your email"
+                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300"
+                                   required>
+                            <i class="fas fa-envelope absolute right-3 top-3 text-gray-400"></i>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-gray-900 font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Subscribe Now
+                        </button>
+                    </form>
+                    <p class="text-gray-500 text-xs mt-3">No spam ever. Unsubscribe at any time.</p>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                        <p>&copy; 2024 MediaHub. All rights reserved. | Crafted with <i class="fas fa-heart text-red-500 mx-1"></i> for content lovers</p>
+                    </div>
+                    <div class="flex space-x-6 text-sm text-gray-400">
+                        <a href="#" class="hover:text-yellow-300 transition duration-300">Privacy Policy</a>
+                        <a href="#" class="hover:text-yellow-300 transition duration-300">Terms of Service</a>
+                        <a href="#" class="hover:text-yellow-300 transition duration-300">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // AJAX newsletter subscription
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(this);
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+
+                    // Show loading state
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Subscribing...';
+                    submitButton.disabled = true;
+
+                    fetch('{% url "newsletter_subscribe_ajax" %}', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show message
+                        showNewsletterMessage(data.message, data.success);
+
+                        if (data.success) {
+                            // Clear form on success
+                            this.reset();
+                        }
+                    })
+                    .catch(error => {
+                        showNewsletterMessage('An error occurred. Please try again.', false);
+                    })
+                    .finally(() => {
+                        // Reset button
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    });
+                });
+            }
+
+            function showNewsletterMessage(message, isSuccess) {
+                // Remove existing message
+                const existingMessage = document.querySelector('.newsletter-message');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+
+                // Create new message
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `newsletter-message mt-3 p-3 rounded-lg text-sm ${
+                    isSuccess ? 'bg-green-900 text-green-200' : 'bg-red-900 text-red-200'
+                }`;
+                messageDiv.innerHTML = `
+                    <i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'} mr-2"></i>
+                    ${message}
+                `;
+
+                // Insert after form
+                newsletterForm.parentNode.insertBefore(messageDiv, newsletterForm.nextSibling);
+
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.remove();
+                    }
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

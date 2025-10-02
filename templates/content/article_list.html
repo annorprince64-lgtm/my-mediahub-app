@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Articles - MediaHub{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Latest Articles</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Read our latest articles and stay updated with interesting content.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {% for article in articles %}
+        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="w-full h-64 object-cover">
+            <div class="p-6">
+                <div class="flex items-center mb-3">
+                    <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                        {{ article.category.name }}
+                    </span>
+                    <span class="text-gray-500 text-sm ml-4">{{ article.created_at|date:"F d, Y" }}</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ article.title }}</h2>
+                <p class="text-gray-600 mb-4">{{ article.excerpt }}</p>
+                <div class="flex justify-between items-center">
+                    <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                        Read More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                    <div class="flex items-center text-gray-500">
+                        <i class="far fa-clock mr-1"></i>
+                        <span>{{ article.created_at|timesince }} ago</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-newspaper text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-2xl font-semibold text-gray-600">No articles available yet</h3>
+            <p class="text-gray-500 mt-2">Check back later for new articles!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
