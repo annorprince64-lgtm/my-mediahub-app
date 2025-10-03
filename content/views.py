@@ -6,6 +6,7 @@ from .models import Video, Music, Article, Picture, NewsletterSubscriber
 import re
 
 
+# Home page view
 def home(request):
     context = {
         'recent_videos': Video.objects.filter(is_published=True).order_by('-created_at')[:6],
@@ -15,7 +16,30 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
+# Policy pages
+def privacy_policy(request):
+    return render(request, 'content/privacy_policy.html')
 
+
+def terms_of_service(request):
+    return render(request, 'content/terms_of_service.html')
+
+
+def contact(request):
+    if request.method == 'POST':
+        # Here you can handle contact form submission
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # For now, we'll just show a success message
+        messages.success(request, "Thank you for your message! We'll get back to you soon.")
+        return redirect('contact')
+
+    return render(request, 'content/contact.html')
+
+
+# Content list views
 class VideoListView(ListView):
     model = Video
     template_name = 'content/video_list.html'
@@ -52,6 +76,7 @@ class GalleryView(ListView):
         return Picture.objects.filter(is_published=True).order_by('-created_at')
 
 
+# Newsletter functionality
 def newsletter_subscribe(request):
     if request.method == "POST":
         email = request.POST.get('email', '').strip()
