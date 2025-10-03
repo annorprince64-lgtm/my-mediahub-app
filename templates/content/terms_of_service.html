@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Terms of Service - MediaHub{% endblock %}
+
+{% block content %}
+<section class="min-h-screen bg-gradient-to-br from-slate-50 to-green-50 py-20">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 mb-6">
+                <div class="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center">
+                    <i class="fas fa-file-contract text-white text-2xl"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-slate-800">Terms of Service</h1>
+            </div>
+            <p class="text-xl text-slate-600">Last updated: October 2nd, 2025</p>
+        </div>
+
+        <!-- Content -->
+        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+            <div class="prose prose-lg max-w-none">
+                <!-- Agreement -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-handshake text-green-500 mr-3"></i>
+                        Agreement to Terms
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        By accessing and using MediaHub, you accept and agree to be bound by the terms and provision of this agreement.
+                    </p>
+                </div>
+
+                <!-- Use License -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-certificate text-blue-500 mr-3"></i>
+                        Use License
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        Permission is granted to temporarily access the materials on MediaHub's website for personal,
+                        non-commercial transitory viewing only.
+                    </p>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        This license shall automatically terminate if you violate any of these restrictions and may be
+                        terminated by MediaHub at any time.
+                    </p>
+                </div>
+
+                <!-- User Responsibilities -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-user-check text-purple-500 mr-3"></i>
+                        User Responsibilities
+                    </h2>
+                    <ul class="list-disc list-inside text-slate-700 space-y-3">
+                        <li>You must be at least 13 years of age to use this service</li>
+                        <li>You are responsible for maintaining the confidentiality of your account</li>
+                        <li>You agree to accept responsibility for all activities that occur under your account</li>
+                        <li>You must not use the website in any way that causes damage or impairs accessibility</li>
+                    </ul>
+                </div>
+
+                <!-- Content -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-photo-video text-yellow-500 mr-3"></i>
+                        Content
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        Our service allows you to access various types of content including videos, music, articles, and images.
+                        All content is provided for personal, non-commercial use only.
+                    </p>
+                </div>
+
+                <!-- Intellectual Property -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-copyright text-red-500 mr-3"></i>
+                        Intellectual Property
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        The service and its original content, features, and functionality are and will remain the exclusive
+                        property of MediaHub and its licensors.
+                    </p>
+                </div>
+
+                <!-- Termination -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-ban text-orange-500 mr-3"></i>
+                        Termination
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        We may terminate or suspend your access immediately, without prior notice or liability, for any reason whatsoever,
+                        including without limitation if you breach the Terms.
+                    </p>
+                </div>
+
+                <!-- Limitation of Liability -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                        Limitation of Liability
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        In no event shall MediaHub, nor its directors, employees, partners, agents, suppliers, or affiliates,
+                        be liable for any indirect, incidental, special, consequential or punitive damages.
+                    </p>
+                </div>
+
+                <!-- Changes to Terms -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-sync-alt text-blue-500 mr-3"></i>
+                        Changes to Terms
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        We reserve the right, at our sole discretion, to modify or replace these Terms at any time.
+                        By continuing to access or use our service after those revisions become effective,
+                        you agree to be bound by the revised terms.
+                    </div>
+
+                <!-- Contact -->
+                <div class="bg-green-50 rounded-2xl p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                        <i class="fas fa-question-circle text-green-500 mr-3"></i>
+                        Questions?
+                    </h2>
+                    <p class="text-slate-700 mb-4">
+                        If you have any questions about these Terms, please contact us.
+                    </p>
+                    <a href="{% url 'contact' %}" class="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">
+                        <i class="fas fa-paper-plane"></i>
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

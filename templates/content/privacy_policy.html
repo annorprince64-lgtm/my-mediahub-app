@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy - MediaHub{% endblock %}
+
+{% block content %}
+<section class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-20">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 mb-6">
+                <div class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-slate-800">Privacy Policy</h1>
+            </div>
+            <p class="text-xl text-slate-600">Last updated: October 2nd, 2025</p>
+        </div>
+
+        <!-- Content -->
+        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+            <div class="prose prose-lg max-w-none">
+                <!-- Introduction -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-info-circle text-blue-500 mr-3"></i>
+                        Introduction
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        Welcome to MediaHub. We are committed to protecting your personal information and your right to privacy.
+                        This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.
+                    </p>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-database text-green-500 mr-3"></i>
+                        Information We Collect
+                    </h2>
+
+                    <h3 class="text-2xl font-semibold text-slate-700 mb-4">Personal Information</h3>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2 mb-6">
+                        <li>Email address (for newsletter subscriptions)</li>
+                        <li>Contact information (when you use our contact form)</li>
+                        <li>Usage data and analytics</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold text-slate-700 mb-4">Automatically Collected Information</h3>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2">
+                        <li>IP address and browser type</li>
+                        <li>Device information</li>
+                        <li>Cookies and usage data</li>
+                    </ul>
+                </div>
+
+                <!-- How We Use Your Information -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-cogs text-purple-500 mr-3"></i>
+                        How We Use Your Information
+                    </h2>
+                    <ul class="list-disc list-inside text-slate-700 space-y-3">
+                        <li>To provide and maintain our service</li>
+                        <li>To notify you about changes to our service</li>
+                        <li>To provide customer support</li>
+                        <li>To gather analysis or valuable information to improve our service</li>
+                        <li>To monitor the usage of our service</li>
+                        <li>To detect, prevent and address technical issues</li>
+                    </ul>
+                </div>
+
+                <!-- Data Security -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-lock text-red-500 mr-3"></i>
+                        Data Security
+                    </h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        We use administrative, technical, and physical security measures to help protect your personal information.
+                        While we have taken reasonable steps to secure the personal information you provide to us,
+                        please be aware that despite our efforts, no security measures are perfect or impenetrable.
+                    </p>
+                </div>
+
+                <!-- Your Rights -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-user-shield text-yellow-500 mr-3"></i>
+                        Your Data Protection Rights
+                    </h2>
+                    <ul class="list-disc list-inside text-slate-700 space-y-3">
+                        <li>The right to access – You have the right to request copies of your personal data.</li>
+                        <li>The right to rectification – You have the right to request correction of any information you believe is inaccurate.</li>
+                        <li>The right to erasure – You have the right to request that we erase your personal data.</li>
+                        <li>The right to restrict processing – You have the right to request that we restrict the processing of your personal data.</li>
+                        <li>The right to data portability – You have the right to request that we transfer the data to another organization.</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="bg-blue-50 rounded-2xl p-6">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                        <i class="fas fa-envelope text-blue-500 mr-3"></i>
+                        Contact Us
+                    </h2>
+                    <p class="text-slate-700 mb-4">
+                        If you have any questions about this Privacy Policy, please contact us:
+                    </p>
+                    <a href="{% url 'contact' %}" class="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
+                        <i class="fas fa-paper-plane"></i>
+                        Contact Form
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
