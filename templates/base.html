@@ -30,16 +30,24 @@
         .text-shadow {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .gradient-border {
-            border: 2px solid transparent;
-            background: linear-gradient(45deg, #667eea, #764ba2) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .page-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+        .line-clamp-2 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans smooth-scroll">
     <!-- Navigation -->
     <nav class="gradient-bg text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto px-4">
@@ -114,17 +122,21 @@
                         Your ultimate destination for premium content. Discover amazing videos, music, articles, and stunning visuals all in one place.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-500 hover:text-gray-900 transition duration-300">
+                        <!-- REPLACE # with your Facebook URL -->
+                        <a href="https://m.facebook.com/p/Annormedia-61581449262770/?name=xhp_nt__fb__action__open_user&wtsid=rdr_0wMAEZhZfY6b75vjf" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition duration-300">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 hover:text-white transition duration-300">
+                        <!-- REPLACE # with your Twitter URL -->
+                        <a href="https://twitter.com/annorprince64" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 hover:text-white transition duration-300">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition duration-300">
+                        <!-- REPLACE # with your Instagram URL -->
+                        <a href="https://instagram.com/annorprince64" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition duration-300">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition duration-300">
-                            <i class="fab fa-youtube"></i>
+                        <!-- REPLACE # with your YouTube URL -->
+                        <a href="https://tiktok.com/@decisions369" target="_blank" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition duration-300">
+                            <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
@@ -187,12 +199,12 @@
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="text-gray-400 text-sm mb-4 md:mb-0">
-                        <p>&copy; 2024 MediaHub. All rights reserved. | Crafted with <i class="fas fa-heart text-red-500 mx-1"></i> for content lovers</p>
+                        <p>&copy; 2025 MediaHub. All rights reserved. | Crafted with <i class="fas fa-heart text-red-500 mx-1"></i> for content lovers</p>
                     </div>
                     <div class="flex space-x-6 text-sm text-gray-400">
-                        <a href="#" class="hover:text-yellow-300 transition duration-300">Privacy Policy</a>
-                        <a href="#" class="hover:text-yellow-300 transition duration-300">Terms of Service</a>
-                        <a href="#" class="hover:text-yellow-300 transition duration-300">Contact</a>
+                        <a href="{% url 'privacy_policy' %}" class="hover:text-yellow-300 transition duration-300">Privacy Policy</a>
+                        <a href="{% url 'terms_of_service' %}" class="hover:text-yellow-300 transition duration-300">Terms of Service</a>
+                        <a href="{% url 'contact' %}" class="hover:text-yellow-300 transition duration-300">Contact</a>
                     </div>
                 </div>
             </div>
@@ -277,6 +289,20 @@
                     }
                 }, 5000);
             }
+        });
+
+        // Parallax effect for hero section
+        document.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-section');
+            if (hero) {
+                hero.style.transform = translateY(${scrolled * 0.5}px);
+            }
+        });
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
         });
     </script>
 </body>
